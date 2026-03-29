@@ -12,21 +12,16 @@ export default class Newscomponent extends Component {
   }
   async componentDidMount() {
     let url = `https://newsapi.org/v2/top-headlines?country=us&apiKey=1cbf1709b4f8418ead26050a190e7a2d&category=${this.props.category}`;
-
     let data = await fetch(url);
     let parsedData = await data.json();
-    console.log(parsedData);
-
-    this.setState({
-      articles: parsedData.articles || [],
-    });
+    this.setState({ articles: parsedData.articles });
   }
   render() {
     return (
       <div className="container my-3">
         <h2>Fast & Direct News - Top Headlines</h2>
         <div className="row">
-          {(this.state.articles || []).map((element) => {
+          {this.state.articles.map((element) => {
             return (
               <div className="col-md-4 my-3" key={element.url}>
                 <Newsitem

@@ -1,16 +1,21 @@
 import React, { Component } from "react";
-import {NavLink , Link} from "react-router-dom";
+import { NavLink, Link } from "react-router-dom";
 // import PropTypes from "prop-types";
 
 export class Navbar extends Component {
-  //   static propTypes = {};
-
   render() {
+    const linkActive = (event) => {
+      const links = document.querySelectorAll(".nav-link");
+      links.forEach((link) => {
+        link.classList.remove("active");
+      });
+      event.target.classList.add("active");
+    };
     return (
       <div>
         <nav className="navbar navbar-expand-lg bg-body-tertiary">
           <div className="container-fluid">
-            <NavLink className="navbar-brand" to="/">
+            <NavLink className="navbar-brand active" to="/">
               F&D News
             </NavLink>
             <button
@@ -30,12 +35,22 @@ export class Navbar extends Component {
             >
               <ul className="navbar-nav me-auto mb-2 mb-lg-0">
                 <li className="nav-item">
-                  <NavLink className="nav-link active" aria-current="page" to="/">
+                  <NavLink
+                    className="nav-link "
+                    aria-current="page"
+                    to="/"
+                    onClick={linkActive}
+                  >
                     Home
                   </NavLink>
                 </li>
                 <li className="nav-item">
-                  <NavLink className="nav-link active" aria-current="page" to="/about">
+                  <NavLink
+                    className="nav-link"
+                    aria-current="page"
+                    to="/about"
+                    onClick={linkActive}
+                  >
                     About
                   </NavLink>
                 </li>
